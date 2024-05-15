@@ -41,4 +41,7 @@ public class WxPayProperties {
    */
   private String keyPath;
 
+  private String signType;
+
+
 }

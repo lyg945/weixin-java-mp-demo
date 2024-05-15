@@ -38,18 +38,17 @@ public class WxRedirectController {
             WxOAuth2AccessToken accessToken = wxService.getOAuth2Service().getAccessToken(code);
             WxOAuth2UserInfo user = wxService.getOAuth2Service().getUserInfo(accessToken, null);
 
-//            WxPayUnifiedOrderRequest prepayInfo = WxPayUnifiedOrderRequest.newBuilder()
-//                .openid(user.getOpenid())
-//                .outTradeNo(UUID.randomUUID().toString().substring(0,30))
-//                .totalFee(1)
-//                .body("算命")
-//                .tradeType("JSAPI")
-//                .spbillCreateIp("123.12.12.123")
-//                .notifyUrl("// TODO 填写通知回调地址")
-//                .build();
-//
-//            Map<String, String> payInfo = this.wxPayService.getPayInfo(prepayInfo);
-//            map.put("payInfo",payInfo);
+            WxPayUnifiedOrderRequest prepayInfo = WxPayUnifiedOrderRequest.newBuilder()
+                .openid(user.getOpenid())
+                .outTradeNo(UUID.randomUUID().toString().substring(0,30))
+                .totalFee(1)
+                .body("算命")
+                .tradeType("JSAPI")
+                .spbillCreateIp("43.242.96.20")
+                .notifyUrl("https://test.haibucuo.com.cn/pay/wx/order/notify/order")
+                .build();
+            Map<String, String> payInfo = this.wxPayService.getPayInfo(prepayInfo);
+            map.put("payInfo",payInfo);
             map.put("user", user);
         } catch (Exception e) {
             e.printStackTrace();

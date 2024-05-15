@@ -65,3 +65,5 @@ https://test.haibucuo.com.cn/pay/wx/menu/wx0fab838b1a9d4eb5/get
   https://test.haibucuo.com.cn/pay/wx/menu/wx0fab838b1a9d4eb5/getSelfMenuInfo
 - 获取jsapi
 https://test.haibucuo.com.cn/pay/wx/jsapi/wx0fab838b1a9d4eb5/getJsapiTicket
+https://test.haibucuo.com.cn/pay/wx/order/notify/order
+
