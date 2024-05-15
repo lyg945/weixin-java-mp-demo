@@ -52,4 +52,16 @@ wx:
 3. 运行Java程序：`WxMpDemoApplication`；
 4. 配置微信公众号中的接口地址：http://公网可访问域名/wx/portal/xxxxx （注意，xxxxx为对应公众号的appid值）；
 5. 根据自己需要修改各个handler的实现，加入自己的业务逻辑。
-	
+
+- 启动
+./cpolar http 80
+- 访问：
+http://localhost:4040/http/in
+- 创建公众号菜单
+https://test.haibucuo.com.cn/pay/wx/menu/wx0fab838b1a9d4eb5/create
+- 获取菜单
+https://test.haibucuo.com.cn/pay/wx/menu/wx0fab838b1a9d4eb5/get
+- 获取getSelfMenuInfo
+  https://test.haibucuo.com.cn/pay/wx/menu/wx0fab838b1a9d4eb5/getSelfMenuInfo
+- 获取jsapi
+https://test.haibucuo.com.cn/pay/wx/jsapi/wx0fab838b1a9d4eb5/getJsapiTicket

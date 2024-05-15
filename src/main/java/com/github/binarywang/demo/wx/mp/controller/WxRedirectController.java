@@ -1,5 +1,7 @@
 package com.github.binarywang.demo.wx.mp.controller;
 
+import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
+import com.github.binarywang.wxpay.service.WxPayService;
 import lombok.AllArgsConstructor;
 import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
 import me.chanjar.weixin.common.bean.oauth2.WxOAuth2AccessToken;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Map;
+import java.util.UUID;
+
 /**
  * @author Edward
  */
@@ -20,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/wx/redirect/{appid}")
 public class WxRedirectController {
     private final WxMpService wxService;
+    private WxPayService wxPayService;
+
 
     @RequestMapping("/greet")
     public String greetUser(@PathVariable String appid, @RequestParam String code, ModelMap map) {
@@ -30,11 +37,23 @@ public class WxRedirectController {
         try {
             WxOAuth2AccessToken accessToken = wxService.getOAuth2Service().getAccessToken(code);
             WxOAuth2UserInfo user = wxService.getOAuth2Service().getUserInfo(accessToken, null);
+
+//            WxPayUnifiedOrderRequest prepayInfo = WxPayUnifiedOrderRequest.newBuilder()
+//                .openid(user.getOpenid())
+//                .outTradeNo(UUID.randomUUID().toString().substring(0,30))
+//                .totalFee(1)
+//                .body("算命")
+//                .tradeType("JSAPI")
+//                .spbillCreateIp("123.12.12.123")
+//                .notifyUrl("// TODO 填写通知回调地址")
+//                .build();
+//
+//            Map<String, String> payInfo = this.wxPayService.getPayInfo(prepayInfo);
+//            map.put("payInfo",payInfo);
             map.put("user", user);
-        } catch (WxErrorException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
         return "greet_user";
     }
 }
