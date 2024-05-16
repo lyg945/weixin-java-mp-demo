@@ -57,7 +57,6 @@
         }
 
         function onBridgeReady(){
-            console.log("11")
             WeixinJSBridge.invoke(
                 'getBrandWCPayRequest', {
                     "appId":"[[${payInfo.appId}]]",     //公众号ID，由商户传入

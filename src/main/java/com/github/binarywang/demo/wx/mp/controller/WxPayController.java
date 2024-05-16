@@ -7,11 +7,16 @@ import com.github.binarywang.wxpay.bean.result.*;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
 import lombok.AllArgsConstructor;
+import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
+import me.chanjar.weixin.common.bean.oauth2.WxOAuth2AccessToken;
+import me.chanjar.weixin.mp.api.WxMpService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
+import java.util.UUID;
+
 
 @RestController
 @RequestMapping("/wx/order")
@@ -19,33 +24,21 @@ import java.util.Map;
 public class WxPayController {
   private WxPayService wxService;
 
-
     /**
      * 返回前台H5调用JS支付所需要的参数，公众号支付调用此接口
-     * @param request
      */
     @RequestMapping(value = "getJSSDKPayInfo")
     @ResponseBody
-    public Map<String, String> getJSSDKPayInfo(HttpServletRequest request) throws WxPayException {
-//        WxPayUnifiedOrderRequest prepayInfo = WxPayUnifiedOrderRequest.newBuilder()
-//            .openid(request.getParameter("openid"))
-//            .outTradeNo(request.getParameter("out_trade_no"))
-//            .totalFee(Integer.valueOf(request.getParameter("total_fee")))
-//            .body(request.getParameter("body"))
-//            .tradeType(request.getParameter("trade_type"))
-//            .spbillCreateIp(request.getParameter("spbill_create_ip"))
-//            .notifyUrl("// TODO 填写通知回调地址")
-//            .build();
+    public Map<String, String> getJSSDKPayInfo(@RequestParam String openId) throws WxPayException {
         WxPayUnifiedOrderRequest prepayInfo = WxPayUnifiedOrderRequest.newBuilder()
-            .openid(request.getParameter("openid"))
-            .outTradeNo(request.getParameter("out_trade_no"))
-            .totalFee(Integer.valueOf(request.getParameter("total_fee")))
-            .body(request.getParameter("body"))
-            .tradeType(request.getParameter("trade_type"))
-            .spbillCreateIp(request.getParameter("spbill_create_ip"))
-            .notifyUrl("// TODO 填写通知回调地址")
-            .build();
-
+                .openid(openId)
+                .outTradeNo(UUID.randomUUID().toString().substring(0,30))
+                .totalFee(1)
+                .body("算命")
+                .tradeType("JSAPI")
+                .spbillCreateIp("43.242.96.20")
+                .notifyUrl("https://test.haibucuo.com.cn/pay/wx/order/notify/order")
+                .build();
        return this.wxService.getPayInfo(prepayInfo);
     }
 
