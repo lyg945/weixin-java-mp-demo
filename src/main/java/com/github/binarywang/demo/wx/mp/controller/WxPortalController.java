@@ -128,19 +128,39 @@ public class WxPortalController {
     @GetMapping("/create")
     @ResponseBody
     public String menuCreateSample(@PathVariable String appid) throws WxErrorException, MalformedURLException {
-        WxMenu menu = new WxMenu();
-        WxMenuButton button3 = new WxMenuButton();
-        button3.setName("点我");
-        menu.getButtons().add(button3);
+//        WxMenu menu = new WxMenu();
+//        WxMenuButton button3 = new WxMenuButton();
+//        button3.setName("点我");
+//        menu.getButtons().add(button3);
+//
+//        WxMenuButton button34 = new WxMenuButton();
+//        button34.setType(WxConsts.MenuButtonType.VIEW);
+//        button34.setName("开始测算");
+//        String url = this.wxService.switchoverTo(appid).getOAuth2Service().buildAuthorizationUrl(
+//            String.format("https://test.haibucuo.com.cn/pay/wx/portal/%s/hello",appid),
+//            WxConsts.OAuth2Scope.SNSAPI_USERINFO, null);
+//        button34.setUrl(url);
+//        button3.getSubButtons().add(button34);
+//        this.wxService.switchover(appid);
+//        return this.wxService.getMenuService().menuCreate(menu);
 
-        WxMenuButton button34 = new WxMenuButton();
-        button34.setType(WxConsts.MenuButtonType.VIEW);
-        button34.setName("开始测算");
         String url = this.wxService.switchoverTo(appid).getOAuth2Service().buildAuthorizationUrl(
             String.format("https://test.haibucuo.com.cn/pay/wx/portal/%s/hello",appid),
             WxConsts.OAuth2Scope.SNSAPI_USERINFO, null);
-        button34.setUrl(url);
-        button3.getSubButtons().add(button34);
+
+        WxMenu menu = new WxMenu();
+        WxMenuButton button3 = new WxMenuButton();
+        button3.setName("开始测算");
+        button3.setUrl(url);
+        button3.setType(WxConsts.MenuButtonType.VIEW);
+        menu.getButtons().add(button3);
+
+//        WxMenuButton button34 = new WxMenuButton();
+//        button34.setType(WxConsts.MenuButtonType.VIEW);
+//        button34.setName("开始测算");
+//
+//        button34.setUrl(url);
+//        button3.getSubButtons().add(button34);
         this.wxService.switchover(appid);
         return this.wxService.getMenuService().menuCreate(menu);
     }
