@@ -67,3 +67,5 @@ https://test.haibucuo.com.cn/pay/wx/menu/wx0fab838b1a9d4eb5/get
 https://test.haibucuo.com.cn/pay/wx/jsapi/wx0fab838b1a9d4eb5/getJsapiTicket
 https://test.haibucuo.com.cn/pay/wx/order/notify/order
 
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0fab838b1a9d4eb5&redirect_uri=https%3A%2F%2Ftest.haibucuo.com.cn%2Fpay%2Fwx%2Fportal%2Fwx0fab838b1a9d4eb5%2Fhello&response_type=code&scope=snsapi_userinfo&state=&connect_redirect=1#wechat_redirect
+
